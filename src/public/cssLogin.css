@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+#pagina{background-color:#FFFFFF; width:100%; height:auto; margin:auto;
+}
+
+#menu{margin:auto; width:100%; height:auto;
+}
+
+#login{border:ridge; width:200px; height:200px; position:fixed; top:50%; left:50%; margin-top:-100px; margin-left:-100px; color:#009900; font-size:24px; background-color:#FFF; font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+#login>label{text-align:left; padding-left:5px;
+}
+
+#login>{text-align:center
+}
+
+.botao{border:none; background-color:#009900; color:#FFFFFF; width:100px; height:50px; font-size:18px; font-family:Verdana, Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+
+#pagina{
+	width:100%;	height:100%; margin:0 0 0 0; padding:0 0 0 0; position:relative;
+}
+
+#topo{ 
+	width:990px; height:auto; left:50%; margin:0 0 5px -495px; position:relative;
+}
+
+#topo #cabecalho{
+	width:990px; height:80px;
+}
+
+#busca{
+	width:990px; height:auto; left:50%; margin:0 0 5px -495px; position:relative;
+}
+
+#busca #campoBusca{
+	width:990px; height:48px;
+}
+
+#busca #resultBusca #encontrados{
+	width:990px; max-height:157px; font-size:14px; background:#CCCCCC; overflow-y:scroll; overflow-x:hidden;
+}
+
+#busca #resultBusca{
+	width:990px; height:203px; font-size:14px; background:#FFF; display:none;
+}
+
+#busca #resultBusca td{
+	background:#FFF;
+}
+
+#busca #insert{
+	width:990px; height:100px; display:none;
+}
+
+#itemVenda{
+	width:990px; height:auto; background:#CCC; position:relative; left:50%; margin:0 0 5px -495px;
+}
+
+#itemVenda td{
+	background:#FFFFFF;
+}
+
+#itemVenda #itensVenda{
+	width:990px;
+}
+
+#finalizacao{
+	width:990px; height:auto; position:relative; left:50%; margin:0 0 5px -495px;
+}
+
+#finalizacao #valores{
+	width:485px; height:51px; display:inline-block;
+}
+#finalizacao #parcelas{
+	width:485px; height:200px; display:none; position:absolute; right:2px; top: 0px;
+}
+
+.barraTitulo{
+	width:100%; height:20px; background:#030; color:#FFFFFF; font-size:16px; font-family:Helvetica, sans-serif; padding:2px 0 0 0;
+}
+
+.barraTitulo p{
+	margin:0 0 0 5px;
+}
+
+.barraSubTitulo{
+	width:100%; height:20px; background:#030; color:#FFFFFF; font-size:16px; font-family:Helvetica, sans-serif; padding:2px 0 0 0; margin:2px 0 0 0;
+}
+
+#busca #resultBusca .barraSubTitulo td{
+		background:#030; color:#FFFFFF; font-size:14px; font-family:Helvetica, sans-serif; position:relative; top:-7px;
+
+}
+
+.spriteIcons{
+	background:url(../icons/sprite.png);
+	display:block;
+}
+
+.btnAdd{
+	background-position:-1px -1px;
+	width:17px;
+	height:17px;
+	cursor:pointer;
+}
+
+.btnEdit{
+	background-position:-22px -1px;
+	width:17px;
+	height:17px;
+	cursor:pointer;
+}

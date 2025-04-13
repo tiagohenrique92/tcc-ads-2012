@@ -1,0 +1,1072 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>DBdoc</title> 
+</head> 
+<style type="text/css"> 
+	table {width: 100%; border-collapse: collapse;} 
+	table, td, th {border: 1px solid black;} 
+</style> 
+<body> 
+<h1>sistema</h1> 
+<ol> 
+<li><a href="#caixa">caixa</a> (4 campos)</li><li><a href="#cidade">cidade</a> (3 campos)</li><li><a href="#cliente">cliente</a> (15 campos)</li><li><a href="#compra">compra</a> (6 campos)</li><li><a href="#fornecedor">fornecedor</a> (16 campos)</li><li><a href="#funcionario">funcionario</a> (12 campos)</li><li><a href="#iprazo">iprazo</a> (3 campos)</li><li><a href="#itemcompra">itemcompra</a> (6 campos)</li><li><a href="#itemvenda">itemvenda</a> (5 campos)</li><li><a href="#nivel">nivel</a> (3 campos)</li><li><a href="#parcelapag">parcelapag</a> (10 campos)</li><li><a href="#parcelarec">parcelarec</a> (10 campos)</li><li><a href="#prazo">prazo</a> (3 campos)</li><li><a href="#produto">produto</a> (7 campos)</li><li><a href="#uf">uf</a> (3 campos)</li><li><a href="#usuario">usuario</a> (7 campos)</li><li><a href="#venda">venda</a> (6 campos)</li></ol> 
+<ol> 
+<li id="caixa"> 
+<h2>caixa</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idcaixa</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datacaixa</td> 
+   <td>DATE</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>valor</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="cidade"> 
+<h2>cidade</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idcid</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(200)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>iduf</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="cliente"> 
+<h2>cliente</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idcli</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcid</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>iduf</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(200)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cnpjcpf</td> 
+   <td>VARCHAR(25)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>ierg</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>endereco</td> 
+   <td>VARCHAR(130)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>bairro</td> 
+   <td>VARCHAR(100)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cep</td> 
+   <td>VARCHAR(10)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>fone</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>celular</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>email</td> 
+   <td>VARCHAR(130)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>contato</td> 
+   <td>VARCHAR(30)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="compra"> 
+<h2>compra</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idcompra</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datacompra</td> 
+   <td>DATE</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>totalcompra</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>prazo</td> 
+   <td>INT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idfor</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="fornecedor"> 
+<h2>fornecedor</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idfor</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcid</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>iduf</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>razsoc</td> 
+   <td>VARCHAR(150)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>fantasia</td> 
+   <td>VARCHAR(100)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>endereco</td> 
+   <td>VARCHAR(60)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>bairro</td> 
+   <td>VARCHAR(30)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cep</td> 
+   <td>VARCHAR(10)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>fone</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>ierg</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cnpjcpf</td> 
+   <td>VARCHAR(25)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>celular</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>email</td> 
+   <td>VARCHAR(150)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>contato</td> 
+   <td>VARCHAR(30)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>CHAR(1)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="funcionario"> 
+<h2>funcionario</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idfun</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>endereco</td> 
+   <td>VARCHAR(60)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>bairro</td> 
+   <td>VARCHAR(30)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cep</td> 
+   <td>VARCHAR(10)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>fone</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>rg</td> 
+   <td>VARCHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>cpf</td> 
+   <td>VARCHAR(25)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>salario</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>dataadm</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datadem</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="iprazo"> 
+<h2>iprazo</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>iditemprazo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idprazo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>dias</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="itemcompra"> 
+<h2>itemcompra</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idcompra</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idpro</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>qtde</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>precocompra</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>precovenda</td> 
+   <td>CHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>total</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="itemvenda"> 
+<h2>itemvenda</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idvenda</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idpro</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>qtde</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>precovenda</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>total</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="nivel"> 
+<h2>nivel</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idnivel</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(25)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>descricao</td> 
+   <td>VARCHAR(180)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="parcelapag"> 
+<h2>parcelapag</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idparc</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcompra</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>numparc</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>totparc</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datavenc</td> 
+   <td>DATE</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datapag</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>valorparc</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>valorpago</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcaixa</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="parcelarec"> 
+<h2>parcelarec</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idparc</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>numparc</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>totparc</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datavenc</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datapag</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>valorparc</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>valorrec</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idvenda</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcaixa</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="prazo"> 
+<h2>prazo</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idprazo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(60)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="produto"> 
+<h2>produto</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idpro</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(60)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>precocompra</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>precovenda</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>barras</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>qtde</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="uf"> 
+<h2>uf</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>iduf</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>sigla</td> 
+   <td>CHAR(2)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(30)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="usuario"> 
+<h2>usuario</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idusuario</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idnivel</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>login</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>senha</td> 
+   <td>VARCHAR(200)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(30)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>editor</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(1)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="venda"> 
+<h2>venda</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idvenda</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td>AUTO_INCREMENT</td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>datavenda</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>totalvenda</td> 
+   <td>FLOAT(10,2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>CHAR(2)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>prazo</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>idcli</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+</ol> 
+</body> 
+</html>

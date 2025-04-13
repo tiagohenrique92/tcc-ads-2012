@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0045)file:///C:/Users/usuario/Desktop/sistema.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>sistema</title>
+	
+	<meta name="date" content="Mon, 15 Oct 2012 21:38:38 -0300">
+	<meta name="generator" content="MySQL-Front 5.2  (Build 5.106)">
+	<style type="text/css"><!--
+		body {font-family: Arial,Helvetica,sans-serif; font-size: 12px;}
+		h1 {font-size: 18px; text-decoration: bold;}
+		h2 {font-size: 16px; text-decoration: bold;}
+		h3 {font-size: 14px; text-decoration: bold;}
+		th,
+		td {font-size: 12px; border-style: solid; border-width: 1px; padding: 1px; font-weight: normal;}
+		code {font-size: 12px;}
+		.TableObject {border-collapse: collapse; border-color: #000000; font-family: Microsoft Sans Serif}
+		.TableData {border-collapse: collapse; border-color: #000000; font-family: Microsoft Sans Serif}
+		.TableHeader {border-color: #000000; text-decoration: bold; background-color: #e0e0e0;}
+		.ObjectHeader {padding-left: 5px; text-align: left; border-color: #000000; text-decoration: bold;}
+		.Object {text-align: left; border-color: #aaaaaa;}
+		.odd {}
+		.even {background-color: #f0f0f0;}
+		.DataHeader {padding-left: 5px; text-align: left; border-color: #000000; background-color: #e0e0e0;}
+		.Data {border-color: #aaaaaa;}
+		.DataNull {color: #999999; border-color: #aaaaaa;}
+		.PrimaryKey {font-weight: bold;}
+		.RightAlign {text-align: right;}
+	--></style>
+</head>
+<body>
+<h1 class="DatabaseTitle">Database: sistema</h1>
+<h2>Table: caixa</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="caixa" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idcaixa</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="caixa" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idcaixa</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datacaixa</td><td>date</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>valor</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: cidade</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="cidade" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idcid</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>iduf</td><td>iduf</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="cidade" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idcid</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(200)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>iduf</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="cidade" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>cidade_ibfk_1</th><td>iduf -&gt; uf.iduf</td><td>cascade on delete, cascade on update</td></tr>
+</tbody></table><br>
+<h2>Table: cliente</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="cliente" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idcli</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>cnpjcpf</td><td>cnpjcpf</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idcid</td><td>idcid</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Object"><td>iduf</td><td>iduf</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="cliente" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idcli</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcid</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>iduf</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(200)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cnpjcpf</td><td>varchar(25)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>ierg</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>endereco</td><td>varchar(130)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>bairro</td><td>varchar(100)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cep</td><td>varchar(10)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>fone</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>celular</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>email</td><td>varchar(130)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>contato</td><td>varchar(30)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>tipo</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="cliente" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>cliente_ibfk_1</th><td>iduf -&gt; uf.iduf</td><td></td></tr>
+	<tr><th>cliente_ibfk_2</th><td>idcid -&gt; cidade.idcid</td><td>cascade on delete, cascade on update</td></tr>
+</tbody></table><br>
+<h2>Table: compra</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="compra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idcompra</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idfor</td><td>idfor</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="compra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idcompra</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datacompra</td><td>date</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>totalcompra</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>prazo</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idfor</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="compra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>compra_ibfk_1</th><td>idfor -&gt; fornecedor.idfor</td><td></td></tr>
+</tbody></table><br>
+<h2>Trigger: at_parcpag_compra_canc</h2>
+<code>CREATE DEFINER=`root`@`localhost` TRIGGER `at_parcpag_compra_canc`<br>
+<br>
+AFTER UPDATE ON `compra` FOR EACH ROW<br>
+begin<br>
+	<br>
+	if new.status = 'C' then<br>
+		<br>
+		update parcelapag set status = 'C', idcaixa = (select max(idcaixa) as idcaixa from caixa) <br>
+		where idcompra = new.idcompra;<br>
+		<br>
+		update itemcompra set qtde = 0, total = 0 <br>
+		where idcompra = new.idcompra;<br>
+	<br>
+	end if;<br>
+<br>
+end;</code>
+<h2>Table: fornecedor</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="fornecedor" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idfor</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idcid</td><td>idcid</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Object"><td>iduf</td><td>iduf</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="fornecedor" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idfor</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcid</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>iduf</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>razsoc</td><td>varchar(150)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>fantasia</td><td>varchar(100)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>endereco</td><td>varchar(60)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>bairro</td><td>varchar(30)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cep</td><td>varchar(10)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>fone</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>ierg</td><td>varchar(20)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cnpjcpf</td><td>varchar(25)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>celular</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>email</td><td>varchar(150)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>contato</td><td>varchar(30)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>tipo</td><td>char(1)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="fornecedor" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>fornecedor_ibfk_1</th><td>iduf -&gt; uf.iduf</td><td></td></tr>
+	<tr><th>fornecedor_ibfk_2</th><td>idcid -&gt; cidade.idcid</td><td>cascade on delete, cascade on update</td></tr>
+</tbody></table><br>
+<h2>Table: funcionario</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="funcionario" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idfun</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="funcionario" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idfun</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(20)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>endereco</td><td>varchar(60)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>bairro</td><td>varchar(30)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cep</td><td>varchar(10)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>fone</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>rg</td><td>varchar(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>cpf</td><td>varchar(25)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>salario</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>dataadm</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datadem</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: iprazo</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="iprazo" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>iditemprazo, idprazo</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idprazo</td><td>idprazo</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="iprazo" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">iditemprazo</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td class="PrimaryKey">idprazo</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>dias</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="iprazo" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>iprazo_ibfk_1</th><td>idprazo -&gt; prazo.idprazo</td><td>cascade on delete, cascade on update</td></tr>
+</tbody></table><br>
+<h2>Table: itemcompra</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="itemcompra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idcompra, idpro</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idpro</td><td>idpro</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="itemcompra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idcompra</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td class="PrimaryKey">idpro</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>qtde</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>precocompra</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>precovenda</td><td>char(20)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>total</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="itemcompra" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>itemcompra_ibfk_1</th><td>idcompra -&gt; compra.idcompra</td><td></td></tr>
+	<tr><th>itemcompra_ibfk_2</th><td>idpro -&gt; produto.idpro</td><td></td></tr>
+</tbody></table><br>
+<h2>Table: itemvenda</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="itemvenda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idvenda, idpro</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idpro</td><td>idpro</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="itemvenda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idvenda</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td class="PrimaryKey">idpro</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>qtde</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>precovenda</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>total</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="itemvenda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>itemvenda_ibfk_1</th><td>idvenda -&gt; venda.idvenda</td><td></td></tr>
+	<tr><th>itemvenda_ibfk_2</th><td>idpro -&gt; produto.idpro</td><td></td></tr>
+</tbody></table><br>
+<h2>Trigger: at_pro_venda_delete</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_pro_venda_delete<br>
+after delete on itemvenda<br>
+for each row<br>
+begin<br>
+   update produto set qtde = (qtde + old.qtde) where idpro = old.idpro;<br>
+end;</code>
+<h2>Trigger: at_pro_venda_insert</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_pro_venda_insert<br>
+after insert on itemvenda<br>
+for each row<br>
+begin<br>
+   update produto set qtde = (qtde - new.qtde) where idpro = new.idpro;<br>
+end;</code>
+<h2>Trigger: at_pro_venda_update</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_pro_venda_update<br>
+after update on itemvenda<br>
+for each row<br>
+begin<br>
+   update produto set qtde = ((qtde + old.qtde) - new.qtde) where idpro = new.idpro;<br>
+end;</code>
+<h2>Table: nivel</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="nivel" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idnivel</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="nivel" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idnivel</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(25)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>descricao</td><td>varchar(180)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: parcelapag</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="parcelapag" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idparc</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idcompra</td><td>idcompra</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="parcelapag" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idparc</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcompra</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>numparc</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>totparc</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datavenc</td><td>date</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datapag</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>valorparc</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>valorpago</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(20)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcaixa</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="parcelapag" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>parcelapag_ibfk_1</th><td>idcompra -&gt; compra.idcompra</td><td></td></tr>
+</tbody></table><br>
+<h2>Trigger: at_compra_paga</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_compra_paga<br>
+after update on parcelapag<br>
+for each row<br>
+begin<br>
+	declare numparc int;<br>
+	if new.status = 'PG' then<br>
+		set numparc = (select count(*) as total_parc from parcelapag where status = 'AB' and idcompra = new.idcompra group by idcompra);<br>
+		if (numparc is null) then<br>
+			update compra set status = 'PG' where idcompra = new.idcompra;<br>
+		else <br>
+			update compra set status = 'PA' where idcompra = new.idcompra;<br>
+		end if;<br>
+	end if;<br>
+end;</code>
+<h2>Table: parcelarec</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="parcelarec" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idparc</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idvenda</td><td>idvenda</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="parcelarec" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idparc</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>numparc</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>totparc</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datavenc</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datapag</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>valorparc</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>valorrec</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(20)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idvenda</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcaixa</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="parcelarec" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>parcelarec_ibfk_1</th><td>idvenda -&gt; venda.idvenda</td><td></td></tr>
+</tbody></table><br>
+<h2>Trigger: at_venda_paga</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_venda_paga<br>
+after update on parcelarec<br>
+for each row<br>
+begin<br>
+	declare numparc int;<br>
+	if new.status = 'PG' then<br>
+		set numparc = (select count(*) as total_parc from parcelarec where status = 'AB' and idvenda = new.idvenda group by idvenda);<br>
+		if (numparc is null) then<br>
+			update venda set status = 'PG' where idvenda = new.idvenda;<br>
+		else <br>
+			update venda set status = 'PA' where idvenda = new.idvenda;<br>
+		end if;<br>
+	end if;<br>
+end;</code>
+<h2>Table: prazo</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="prazo" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idprazo</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="prazo" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idprazo</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(60)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: produto</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="produto" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idpro</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="produto" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idpro</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(60)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>precocompra</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>precovenda</td><td>float(10,2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>barras</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>qtde</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: uf</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="uf" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>iduf</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="uf" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">iduf</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>sigla</td><td>char(2)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(30)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h2>Table: usuario</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="usuario" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idusuario</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idnivel</td><td>idnivel</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Object"><td>login</td><td>login</td><td>unique</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="usuario" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idusuario</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idnivel</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>login</td><td>varchar(20)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>senha</td><td>varchar(200)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>nome</td><td>varchar(30)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>editor</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(1)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="usuario" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>usuario_ibfk_1</th><td>idnivel -&gt; nivel.idnivel</td><td></td></tr>
+</tbody></table><br>
+<h2>Table: venda</h2>
+<h3>Keys:</h3>
+<table border="0" cellspacing="0" summary="venda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">Primary Key</td><td>idvenda</td><td>unique</td><td></td></tr>
+	<tr class="Object"><td>idcli</td><td>idcli</td><td>&nbsp;</td><td></td></tr>
+</tbody></table><br>
+<h3>Fields:</h3>
+<table border="0" cellspacing="0" summary="venda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>NULL</th><th>Default</th><th>Extras</th><th>Comment</th></tr>
+	<tr class="Object"><td class="PrimaryKey">idvenda</td><td>int(11)</td><td>No</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>datavenda</td><td>date</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>totalvenda</td><td>float(10,2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>status</td><td>char(2)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>prazo</td><td>int(11)</td><td>Yes</td><td class="DataNull">&lt;NULL&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Object"><td>idcli</td><td>int(11)</td><td>No</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</tbody></table><br>
+<h3>Foreign Keys:</h3>
+<table border="0" cellspacing="0" summary="venda" class="TableObject">
+	<tbody><tr class="TableHeader ObjectHeader"><th>Name</th><th>Type</th><th>Extras</th></tr>
+	<tr><th>venda_ibfk_1</th><td>idcli -&gt; cliente.idcli</td><td></td></tr>
+</tbody></table><br>
+<h2>Trigger: at_parcrec_vend_canc</h2>
+<code>CREATE DEFINER=`root`@`localhost` trigger at_parcrec_vend_canc<br>
+after update on venda<br>
+for each row<br>
+begin<br>
+	if new.status = 'C' then<br>
+		update parcelarec set status = 'C', idcaixa = (select max(idcaixa) as idcaixa from caixa) where idvenda = new.idvenda;<br>
+		update itemvenda set qtde = 0, total = 0 where idvenda = new.idvenda;<br>
+	end if;<br>
+end;</code>
+
+
+</body></html>

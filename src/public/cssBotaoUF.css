@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+.botaoUF{
+	border:double; background-color:#6C0; color:#FFF; margin:-2px; 
+}
+.botaoUF:hover{
+	border:double; background-color:#060; color:#FFF;
+}
