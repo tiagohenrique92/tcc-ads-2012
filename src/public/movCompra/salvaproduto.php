@@ -20,11 +20,11 @@
 		$status = $_POST['status'];
 		
 		if(empty($idpro)){
-			$sql = "insert into produto(idpro, nome, precocompra, precovenda, barras, status) values('NULL', '$nome', '$pcompra', '$pvenda',  $barras, '$status')";
+			$sql = "insert into produto(idpro, nome, precocompra, precovenda, barras, status) values(null, '$nome', '$pcompra', '$pvenda',  $barras, '$status')";
 		}else{
 			$sql = "update produto set nome = '$nome', precocompra = '$pcompra', precovenda = '$pvenda', barras = $barras, status = '$status' where idpro = $idpro";
 		}
-		if(!mysql_query($sql)){
+		if(!mysqli_query($GLOBALS['connection'], $sql)){
 			echo "Erro para gravar o produto";
 			?>
             <a href="index.php">Voltar</a>

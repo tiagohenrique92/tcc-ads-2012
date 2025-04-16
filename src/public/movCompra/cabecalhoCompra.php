@@ -2,8 +2,8 @@
 	require "../conection.php";
 	$idcompra = $_SESSION['idcompra'];
 	$sql = "select compra.*, fornecedor.razsoc from compra, fornecedor where idcompra = $idcompra and compra.idfor = fornecedor.idfor";
-	$resultado = mysql_query($sql);
-	$linha = mysql_fetch_assoc($resultado);
+	$resultado = mysqli_query($GLOBALS['connection'], $sql);
+	$linha = mysqli_fetch_assoc($resultado);
 ?>
 <style type="text/css">
 #tabela input{

@@ -17,9 +17,9 @@
 		
 		$sql = "select itemvenda.*, produto.nome as nome, produto.barras as barras, produto.qtde as estoque from itemvenda, produto where idvenda = $idvenda and produto.idpro = itemvenda.idpro";
 		
-		$resultado = mysql_query($sql);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
 		
-		while($linha = mysql_fetch_assoc($resultado)){
+		while($linha = mysqli_fetch_assoc($resultado)){
 			$i++;
 			$soma = $soma + $linha['total'];
 			?>

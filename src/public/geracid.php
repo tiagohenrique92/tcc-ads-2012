@@ -11,12 +11,12 @@
 		mysql_select_db("novo");
 		/*	$i = 4777;
 			$sql = "select codigo from municipios_ibge where codigo > $i";
-			$resultado = mysql_query($sql);
-			$numlinhas = mysql_num_rows($resultado);
-			while($linha = mysql_fetch_array($resultado)){
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
+			$numlinhas = mysqli_num_rows($resultado);
+			while($linha = mysqli_fetch_array($resultado)){
 				$codigo = $linha['codigo'];
 				$sql = "update municipios_ibge set codigo = ($i + 1) where codigo = $codigo";
-				$result = mysql_query($sql) or die(mysql_error(). $i );
+				$result = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']). $i );
 				
 			
 				$i++;

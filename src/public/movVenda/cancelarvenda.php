@@ -41,8 +41,8 @@
 							$id = $_GET['id'];
 							
 							$sql = "select venda.*, cliente.nome as nome from venda, cliente where (venda.idcli = cliente.idcli) and (venda.idcli = ".$id.") and (venda.status in ('AB', 'PA', 'PG'))";
-							$result = mysql_query($sql);
-							$numReg = mysql_num_rows($result);
+							$result = mysqli_query($GLOBALS['connection'], $sql);
+							$numReg = mysqli_num_rows($result);
 							
 							if($numReg > 0){
 								?>
@@ -55,7 +55,7 @@
                                         <td width="50px"></td>
                                     </tr>
                                 <?php
-								while($linha = mysql_fetch_assoc($result)){
+								while($linha = mysqli_fetch_assoc($result)){
 									echo "
 									<tr>
                                         <td align='right'>".$linha['idvenda']."</td>

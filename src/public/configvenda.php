@@ -26,7 +26,7 @@
         	<?php
 				$idvenda = $_SESSION['idvenda'];
 				$sql = "select * from prazo where status = 'A' order by nome";
-				$resultado = mysql_query($sql);
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
 				$totalvenda = number_format($_POST['totalvenda'], 2);
 				?>
 				<form name="frmgravavenda" method="post" action="index.php" onsubmit="return abreTelaParc(prazo.value, idvenda.value, totalvenda.value, desconto.value, this.name)">
@@ -39,7 +39,7 @@
 					 <label class="label">Prazo</label>
 						<select class="label" name="prazo" onblur="abreTelaParc(prazo.value, '<?php echo $_SESSION['idvenda']; ?>', '<?php echo $totalvenda; ?>', ent.value, form.name)">
 							<?php
-								while($linha = mysql_fetch_array($resultado)){
+								while($linha = mysqli_fetch_array($resultado)){
 									?>
 										<option value="<?php echo $linha['idprazo']; ?>"><?php echo $linha['nome'];?></option>
 									<?php

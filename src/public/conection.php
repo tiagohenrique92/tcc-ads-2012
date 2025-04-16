@@ -3,8 +3,8 @@
 		session_start();
 	}
 	
-	$con = mysql_connect("localhost", "root");
-	if(!mysql_select_db("sistema", $con)){
+	$GLOBALS['connection'] = mysqli_connect("mysql", "root", "123456", "sistema");
+	if(!$GLOBALS['connection']){
 		echo "erro ao conectar no banco de dados";
 	}
 	

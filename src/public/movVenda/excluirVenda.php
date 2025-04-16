@@ -10,8 +10,8 @@
 		Verifica se existem recebimentos efetuados
 		*/
 		$sql = "select * from parcelarec where idvenda = ".$idvenda." and status = 'PG'";
-		$resultado = mysql_query($sql);
-		$numReg = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numReg = mysqli_num_rows($resultado);
 		
 		if($numReg > 0){
 			$retorno = array('erro'=>'1', 'msg'=>'Esta venda já foi recebida parcial ou totalmente. Efetue primeiramente o estorno dos pagamentos.');
@@ -26,28 +26,28 @@
 		
 		$sql = "update venda set status = 'C' where idvenda = ".$idvenda;
 		
-		if(!$resultado = mysql_query($sql)){
-			$erro = str_replace("'", "", mysql_error());
-			$retorno = array('erro'=>mysql_errno(), 'msg'=>$erro);
+		if(!$resultado = mysqli_query($GLOBALS['connection'], $sql)){
+			$erro = str_replace("'", "", mysqli_error($GLOBALS['connection']));
+			$retorno = array('erro'=>mysqli_errno($GLOBALS['connection']), 'msg'=>$erro);
 			$retorno = json_encode($retorno);
 			echo $retorno;
 			exit;
 		}else{
 			/******Devolve as quantidades para o estoque*******/
 			$sql = "select qtde, idpro from itemvenda where idvenda = '".$idvenda."'";
-			$resultado = mysql_query($sql);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
 			
-			while($linha = mysql_fetch_assoc($resultado)){
+			while($linha = mysqli_fetch_assoc($resultado)){
 				$sql = "update produto  set qtde = (qtde + ".$linha['qtde'].") where (idpro = ".$linha['idpro'].")";
-				$result = mysql_query($sql);
+				$result = mysqli_query($GLOBALS['connection'], $sql);
 			}
 			
 			/******Exclui as parcelas da venda*******/
 			$sql = "delete from parcelarec where idvenda = ".$idvenda;
 			
-			if(!mysql_query($sql)){
-				$erro = str_replace("'", "", mysql_error());
-				$retorno = array('erro'=>mysql_errno(), 'msg'=>$erro);
+			if(!mysqli_query($GLOBALS['connection'], $sql)){
+				$erro = str_replace("'", "", mysqli_error($GLOBALS['connection']));
+				$retorno = array('erro'=>mysqli_errno($GLOBALS['connection']), 'msg'=>$erro);
 				$retorno = json_encode($retorno);
 				echo $retorno;
 				exit;

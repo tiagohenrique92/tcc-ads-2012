@@ -40,8 +40,8 @@
 					$numLinha = 0;
 
 					$sql = "select fornecedor.*, uf.iduf as estado, cidade.idcid as cidade from fornecedor, uf, cidade where (fornecedor.fantasia like '%$fantasia%') and (fornecedor.iduf = uf.iduf) and (fornecedor.idcid = cidade.idcid) order by fornecedor.status, fornecedor.fantasia ";
-					$resultado = mysql_query($sql);
-					if(mysql_num_rows($resultado) <> 0){
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					if(mysqli_num_rows($resultado) <> 0){
 			?>
             <table>
             	<tr>
@@ -53,7 +53,7 @@
 					}else{
 						echo "A pesquisa não encontrou resultados.";
 					}
-					while($linha = mysql_fetch_array($resultado)){
+					while($linha = mysqli_fetch_array($resultado)){
 						$numLinha++;
 						if($numLinha % 2 == 0){
 							$corLinha = "background-color:#009900;";

@@ -16,8 +16,8 @@
 	}
 	
 	$sql = "select * from produto ".$where." order by nome";
-	$select = mysql_query($sql);
-	$numrows = mysql_num_rows($select);
+	$select = mysqli_query($GLOBALS['connection'], $sql);
+	$numrows = mysqli_num_rows($select);
 	if($numrows > 0){
 		?>
         <table width="100%;">
@@ -33,7 +33,7 @@
                 </tr>
          	</thead>
         <?php
-		while($linha = mysql_fetch_assoc($select)){
+		while($linha = mysqli_fetch_assoc($select)){
 			?>
             <tbody>
                 <tr>

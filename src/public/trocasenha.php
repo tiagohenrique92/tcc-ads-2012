@@ -21,8 +21,8 @@
         <div id="conteúdo">
         	<?php
 				$sql = "select usuario.*, nivel.nome as nomenivel from usuario, nivel where (idusuario = $idusuario) and (usuario.idnivel = nivel.idnivel)";
-				$resultado = mysql_query($sql);
-				$linha = mysql_fetch_assoc($resultado);
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
+				$linha = mysqli_fetch_assoc($resultado);
 				$status = $linha['status'];
 				$nome = $linha['nome'];
 				$login = $linha['login'];

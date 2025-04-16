@@ -25,12 +25,12 @@
     	if(isset($_POST['btnUF'])){
 			$uf = $_POST['btnUF'];
 			$sql = "select * from cidade where iduf = (select iduf from uf where sigla = '$uf')";
-			$resultado = mysql_query($sql);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
 	?>
     	<form name="formbusca" action="busca.php" method="post">
 			<select name="cidade" style="width:300px" onblur="cidade()">
             <?php
-				while($linha = mysql_fetch_array($resultado)){
+				while($linha = mysqli_fetch_array($resultado)){
 					$cidade = $linha['cidade'];
 					$idcid = $linha['idcid'];
 			?>

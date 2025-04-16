@@ -9,8 +9,8 @@
 	if(isset($_GET)){
 		$nome = $_GET['valbusca'];		
 		$sql = "select idfor, razsoc, fone, celular from fornecedor where razsoc like '%$nome%' and status = 'A' order by razsoc";
-		$resultado = mysql_query($sql);
-		$numlinhas = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numlinhas = mysqli_num_rows($resultado);
 		
 		if($numlinhas == 0){
 			echo "<br />A pesquisa não encontrou resultados.";
@@ -26,7 +26,7 @@
 			</tr>
             
 		<?php
-		while($linha = mysql_fetch_array($resultado)){
+		while($linha = mysqli_fetch_array($resultado)){
 			$idfor = $linha['idfor'];
 			$nome = $linha['razsoc'];
 			$fone = $linha['fone'];

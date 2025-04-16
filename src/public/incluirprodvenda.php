@@ -29,8 +29,8 @@
 					$tipo = $_GET['tipo'];
 					
 					$sql = "select * from produto where idpro = $idpro";
-					$resultado = mysql_query($sql);
-					$linha = mysql_fetch_assoc($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$linha = mysqli_fetch_assoc($resultado);
 					
 					$nome = $linha['nome'];
 					$preco = $linha['precovenda'];
@@ -82,7 +82,7 @@
 								}
 								if($tipo == "E"){
 									$sql = "delete from itemvenda where idpro = $idpro";
-									$resultado = mysql_query($sql);
+									$resultado = mysqli_query($GLOBALS['connection'], $sql);
 									header("location: novavenda.php");
 								}
 							?>
@@ -101,8 +101,8 @@
 					$idvenda = $_SESSION['idvenda'];
 					
 					$sql = "select * from itemvenda where idpro = $idpro and idvenda = $idvenda";
-					$resultado = mysql_query($sql);
-					$numlinhas = mysql_num_rows($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$numlinhas = mysqli_num_rows($resultado);
 					
 					if($numlinhas < 1){
 						$sql = "insert into itemvenda(idvenda, idpro, qtde, precovenda, total) values($idvenda, $idpro, $qtde, '$preco', '$total')";		
@@ -110,7 +110,7 @@
 						$sql = "update itemvenda set qtde = $qtde, total = '$total' where idpro = $idpro and idvenda = $idvenda";
 					}
 					
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					header("location: novavenda.php");
 				}
 			?>

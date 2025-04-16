@@ -26,8 +26,8 @@
 					if(isset($_GET['id'])){
 						$idfor = $_GET['id'];
 						$sql = "select * from fornecedor where idfor = ".$idfor;
-						$resultado = mysql_query($sql);
-						$fornecedor = mysql_fetch_assoc($resultado);
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
+						$fornecedor = mysqli_fetch_assoc($resultado);
 						$nome = $fornecedor['razsoc'];
 					}
 				?>

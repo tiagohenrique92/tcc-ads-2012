@@ -1,0 +1,55 @@
+name: tcc
+
+services:
+  phpfpm:
+    image: 'bitnami/php-fpm:5.6'
+    networks:
+      - bubble
+    volumes:
+      - type: bind
+        source: src/public
+        target: /app
+
+  nginx:
+    build: .
+    image: 'bitnami/nginx:latest'
+    depends_on:
+      - phpfpm
+      - mysql
+    networks:
+      - bubble
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - type: bind
+        source: src/public
+        target: /app
+
+  mysql:
+    image: 'bitnami/mysql:8.0'
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=sistema
+      - MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
+      - MYSQL_DEFAULT_CHARACTER_SET=utf8mb4
+      - MYSQL_CHARACTER_SET=utf8
+    networks:
+      - bubble
+    ports:
+      - '33060:3306'
+    volumes:
+      - data:/bitnami/mysql/data
+      - type: bind
+        source: database
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  bubble:
+    driver: bridge

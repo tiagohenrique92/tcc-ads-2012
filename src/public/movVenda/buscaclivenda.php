@@ -42,12 +42,12 @@
                 <table>
                     <?php
 						$sql = 
-						"SELECT IDVENDA, CLIENTE.NOME AS NOME FROM VENDA 
-						LEFT JOIN CLIENTE ON
-						VENDA.IDCLI = CLIENTE.IDCLI
-						WHERE VENDA.STATUS = 'AB' AND TOTALVENDA IS NULL";
-                        $resultado = mysql_query($sql);
-                        $numresult = mysql_num_rows($resultado);
+						"SELECT idvenda, cliente.nome FROM venda 
+						LEFT JOIN cliente ON
+						venda.idcli = cliente.idcli
+						WHERE venda.status = 'AB' AND totalvenda IS NULL";
+                        $resultado = mysqli_query($GLOBALS['connection'], $sql);
+                        $numresult = mysqli_num_rows($resultado);
                         
 						if($numresult >= 1){
 							?>
@@ -57,9 +57,9 @@
                                 <td width="100">Opções</td>
                             </tr>
                             <?php
-                            while($linha = mysql_fetch_assoc($resultado)){
-                                $idvenda = $linha['IDVENDA'];
-                                $nome = $linha['NOME'];
+                            while($linha = mysqli_fetch_assoc($resultado)){
+                                $idvenda = $linha['idvenda'];
+                                $nome = $linha['nome'];
 
                                 ?>
                                 <tr>

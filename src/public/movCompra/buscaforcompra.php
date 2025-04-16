@@ -46,8 +46,8 @@
 						LEFT JOIN FORNECEDOR ON
 						COMPRA.IDFOR = FORNECEDOR.IDFOR
 						WHERE COMPRA.STATUS = 'AB' AND TOTALCOMPRA = 0";
-                        $resultado = mysql_query($sql);
-                        $numresult = mysql_num_rows($resultado);
+                        $resultado = mysqli_query($GLOBALS['connection'], $sql);
+                        $numresult = mysqli_num_rows($resultado);
                         
 						if($numresult >= 1){
 							?>
@@ -57,7 +57,7 @@
                                 <td width="100">Opções</td>
                             </tr>
                             <?php
-                            while($linha = mysql_fetch_assoc($resultado)){
+                            while($linha = mysqli_fetch_assoc($resultado)){
                                 $idcompra = $linha['IDCOMPRA'];
                                 $nome = $linha['NOME'];
 

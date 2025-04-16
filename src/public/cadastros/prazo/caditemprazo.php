@@ -26,8 +26,8 @@
                 $idprazo = $_GET['idprazo'];
 				
 				$sql = "select nome from prazo where idprazo = $idprazo";
-				$resultado = mysql_query($sql);
-				$prazo = mysql_fetch_array($resultado);
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
+				$prazo = mysqli_fetch_array($resultado);
 				$prazo = $prazo['nome'];
 			?>
             
@@ -49,20 +49,20 @@
 					$idprazo = $_GET['idprazo'];
 					$iditemprazo = $_GET['iditemprazo'];
 					$sql = "delete from iprazo where iditemprazo = $iditemprazo and idprazo = $idprazo";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					
 					header("location: caditemprazo.php?idprazo=$idprazo&listar");
 					exit();
 				}
 				if(isset($_GET['dias'])){
 					$dias = $_GET['dias'];
-                	$sql = "insert into iprazo(iditemprazo, idprazo, dias) values('NULL', $idprazo, $dias)";
-					$resultado = mysql_query($sql);
+                	$sql = "insert into iprazo(iditemprazo, idprazo, dias) values(null, $idprazo, $dias)";
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 				}
 				
 				if(isset($_GET['listar'])){
 					$sql = "select * from iprazo where idprazo = $idprazo order by dias";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					
 					?>
                     <fieldset style="width:180px">
@@ -73,7 +73,7 @@
                             <td align="center" width="55px">Excluir</td>
                         </tr>
                     <?php
-					while($linha = mysql_fetch_array($resultado)){
+					while($linha = mysqli_fetch_array($resultado)){
 						$j++;
 						?>
                         <tr align="right">

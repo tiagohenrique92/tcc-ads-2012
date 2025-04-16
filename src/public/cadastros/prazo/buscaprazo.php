@@ -31,9 +31,9 @@
                 </tr>
             	<?php 
 					$sql = "select * from prazo order by nome";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					
-					while($linha = mysql_fetch_array($resultado)){
+					while($linha = mysqli_fetch_array($resultado)){
 						?>
                         <tr>
                         	<td align="left"><?php echo $linha['nome'];?></td>
@@ -72,7 +72,7 @@
 							break;
 						}
 						
-						$resultado = mysql_query($sql);
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
 						
 						header("location: buscaprazo.php");
 						exit();

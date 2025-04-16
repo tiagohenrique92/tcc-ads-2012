@@ -23,8 +23,8 @@
         	<h2>Olá <?php echo $nomeusuario;?>, Bem vindo ao sistema PEARSOFT</h2>
         	<?php
 				$sql = "select datacaixa from caixa where idcaixa = (select max(idcaixa) as idcaixa from caixa) ";
-				$resultado = mysql_query($sql);
-				$datacaixa = mysql_fetch_assoc($resultado);
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
+				$datacaixa = mysqli_fetch_assoc($resultado);
 				$datacaixa = $datacaixa['datacaixa'];				
 			?>
             <div id="caixa" style="position:absolute; top: -20px; right:5px">

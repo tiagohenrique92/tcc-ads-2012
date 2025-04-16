@@ -9,12 +9,15 @@
 		$caixa = $_SESSION['caixa'];
 		$valorfinal = $_POST['valorfinal'];
 		$prazo = $_POST['prazo'];
+
+        $sql = "delete from parcelapag where idcompra = " . $idcompra;
+        mysqli_query($GLOBALS['connection'], $sql);
 		
 		foreach($parcelas as $parcela){
 			$sql = "
 			insert into parcelapag(idparc, numparc, totparc, datavenc, valorparc, status, idcompra, idcaixa) 
 			values(
-			'null', 
+			null, 
 			".$parcela['num'].", 
 			".$parcela['total'].", 
 			'".implode("-", array_reverse(explode("-", $parcela['vcto'])))."', 
@@ -24,18 +27,18 @@
 			".$caixa."
 			)";
 
-			$resultado = mysql_query($sql) or die("erro: ".mysql_error());
+			$resultado = mysqli_query($GLOBALS['connection'], $sql) or die("erro: ".mysqli_error($GLOBALS['connection']));
 		}
 
-		$sql = "update compra set totalcompra = ".$valorfinal.", prazo = ".$prazo.", status = 'AP' where idcompra = ".$idcompra;
-		$resultado = mysql_query($sql) or die("erro: ".mysql_error());
+		$sql = "update compra set totalcompra = ".$valorfinal.", prazo_idprazo = ".$prazo.", status = 'PA' where idcompra = ".$idcompra;
+		$resultado = mysqli_query($GLOBALS['connection'], $sql) or die("erro: ".mysqli_error($GLOBALS['connection']));
 		
 		$sql = "select * from itemcompra where idcompra = ".$idcompra;
-		$produtos = mysql_query($sql) or die("erro:".mysql_error());
+		$produtos = mysqli_query($GLOBALS['connection'], $sql) or die("erro:".mysqli_error($GLOBALS['connection']));
 		
-		while($produto = mysql_fetch_assoc($produtos)){
+		while($produto = mysqli_fetch_assoc($produtos)){
 			$sql = "update produto set qtde = qtde + ".$produto['qtde']." where idpro = ".$produto['idpro'];
-			mysql_query($sql);
+			mysqli_query($GLOBALS['connection'], $sql);
 		};
 		
 		unset($_SESSION['idcompra']);

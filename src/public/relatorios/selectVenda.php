@@ -6,9 +6,9 @@
 	$soma = 0;
 	$cont = 0;
 	
-	$sql = "select venda.*, prazo.nome as nomeprazo, cliente.nome as nome from venda, cliente, prazo where datavenda between '".$dataini."' and '".$datafin."' and venda.status <> 'CA' and venda.idcli = cliente.idcli and venda.prazo = prazo.idprazo";
-	$select = mysql_query($sql);
-	$numrows = mysql_num_rows($select);
+	$sql = "select venda.*, prazo.nome as nomeprazo, cliente.nome as nome from venda, cliente, prazo where datavenda between '".$dataini."' and '".$datafin."' and venda.status <> 'C' and venda.idcli = cliente.idcli and venda.prazo_idprazo = prazo.idprazo";
+	$select = mysqli_query($GLOBALS['connection'], $sql);
+	$numrows = mysqli_num_rows($select);
 	if($numrows > 0){
 		?>
         <table width="100%;">
@@ -23,7 +23,7 @@
                 </tr>
          	</thead>
         <?php
-		while($linha = mysql_fetch_assoc($select)){
+		while($linha = mysqli_fetch_assoc($select)){
 			?>
             <tbody>
                 <tr>
@@ -33,12 +33,12 @@
                     <td align="center">
 						<?php 
 							switch($linha['status']){
-								case 'C':
-									echo 'Cancelado';
+								case 'PA':
+									echo 'A pagar';
 									break;
-								case 'AP':
-									echo 'À pagar';
-									break;
+                                case 'PG':
+                                    echo 'Pago';
+                                    break;
 								case 'AB':
 									echo 'Aberto';
 									break;

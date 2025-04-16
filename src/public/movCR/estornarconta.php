@@ -8,21 +8,21 @@
 		$status = "AB";
 		$sql = "update parcelarec set status = '$status', valorrec = NULL, idcaixa = '$caixa', datapag = NULL where idvenda = $idvenda and numparc = $idparc";
 		
-		if(mysql_query($sql)){
+		if(mysqli_query($GLOBALS['connection'], $sql)){
 			$sql = "select * from parcelarec where idvenda = ".$idvenda." and status in('PG', 'PA')";
-			$resultado = mysql_query($sql);
-			$numReg = mysql_num_rows($resultado);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
+			$numReg = mysqli_num_rows($resultado);
 			
 			if($numReg > 0){
 				$sql = "update venda set status = 'PA' where idvenda = ".$idvenda;
 			}else{
 				$sql = "update venda set status = 'AB where idvenda = ".$idvenda;
 			}
-			$resultado = mysql_query($sql);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
 			
 			$resposta = array("erro"=>0, "msg"=>"Parcela estornada.");
 		}else{
-			$resposta = array("erro"=>1, "msg"=>"Erro ao estornar parcela.".mysql_error());
+			$resposta = array("erro"=>1, "msg"=>"Erro ao estornar parcela.".mysqli_error($GLOBALS['connection']));
 		}
 		$resposta = json_encode($resposta);
 		echo $resposta;

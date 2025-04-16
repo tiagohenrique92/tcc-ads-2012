@@ -5,8 +5,8 @@
 		$idcli = $_GET['id'];
 		$ordem = $_GET['ordem'];
 		$sql = "select parcelarec.*, venda.idcli, venda.datavenda from parcelarec, venda where (venda.idcli = $idcli) and (parcelarec.idvenda = venda.idvenda) and (parcelarec.status in ('PG', 'PA')) order by $ordem, numparc, idvenda";
-		$resultado = mysql_query($sql);
-		$numResultado = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numResultado = mysqli_num_rows($resultado);
 		?>
        	<div class="barraTitulo">Encontrados</div>
         <?php
@@ -26,24 +26,25 @@
 				<td width="50px">Estornar</td>
 			</tr>
 		<?php
-		while($linha = mysql_fetch_array($resultado)){
+		while($linha = mysqli_fetch_array($resultado)){
 			$idvenda = $linha['idvenda'];
 			$datavenda = implode("/", array_reverse(explode("-", $linha['datavenda'])));
 			$idparc = $linha['numparc'];
 			$totalparc = $linha['totparc'];
 			$datavenc = implode("/", array_reverse(explode("-", $linha['datavenc'])));
 			$valorparc = $linha['valorparc'];
+            $form = $idvenda . "_" . $idparc;
 			?>
-			<form class="frmBaixar">
-				<input type="hidden" name="idcli" value="<?php echo $idcli; ?>" />
+			<form id="<?php echo $form; ?>" class="frmBaixar">
+				<input form="<?php echo $form; ?>" type="hidden" name="idcli" value="<?php echo $idcli; ?>" />
 			<tr>
-				<td align="right"><input type="text" name="idvenda" size="10px" readonly="readonly" value="<?php echo $idvenda; ?>" style="text-align:right" /></td>
-				<td align="center"><input type="text" name="datavenda" size="10px" readonly="readonly" value="<?php echo $datavenda; ?>" style="text-align:center" /></td>
-				<td align="right"><input type="text" name="idparc" size="10px" readonly="readonly" value="<?php echo $idparc; ?>" style="text-align:right" /></td>
-				<td align="right"><input type="text" name="totparc" size="12px" readonly="readonly" value="<?php echo $totalparc; ?>" style="text-align:right" /></td>
-				<td align="center"><input type="text" name="datavenc" size="10px" readonly="readonly" value="<?php echo $datavenc; ?>" style="text-align:center" /></td>
-				<td align="right"><input type="text" name="valorparc" size="10px" readonly="readonly" value="<?php echo $valorparc; ?>" style="text-align:right" /></td>
-				<td align="center"><input type="submit" name="btSelecionar" value="Estornar" /></td>
+				<td align="right"><input form="<?php echo $form; ?>" type="text" name="idvenda" size="10px" readonly="readonly" value="<?php echo $idvenda; ?>" style="text-align:right" /></td>
+				<td align="center"><input form="<?php echo $form; ?>" type="text" name="datavenda" size="10px" readonly="readonly" value="<?php echo $datavenda; ?>" style="text-align:center" /></td>
+				<td align="right"><input form="<?php echo $form; ?>" type="text" name="idparc" size="10px" readonly="readonly" value="<?php echo $idparc; ?>" style="text-align:right" /></td>
+				<td align="right"><input form="<?php echo $form; ?>" type="text" name="totparc" size="12px" readonly="readonly" value="<?php echo $totalparc; ?>" style="text-align:right" /></td>
+				<td align="center"><input form="<?php echo $form; ?>" type="text" name="datavenc" size="10px" readonly="readonly" value="<?php echo $datavenc; ?>" style="text-align:center" /></td>
+				<td align="right"><input form="<?php echo $form; ?>" type="text" name="valorparc" size="10px" readonly="readonly" value="<?php echo $valorparc; ?>" style="text-align:right" /></td>
+				<td align="center"><input form="<?php echo $form; ?>" type="submit" name="btSelecionar" value="Estornar" /></td>
 			</tr>
 			</form>
 			<?php
@@ -64,16 +65,16 @@
 </style>
 
 <script type="text/javascript">
-baixar();
-
-function baixar(){
-	$('.frmBaixar').submit(function(){
-		document.getElementById('idcli').value = this.idcli.value;
-		document.getElementById('idvenda').value = this.idvenda.value;
-		document.getElementById('idparc').value = this.idparc.value;
-		document.getElementById('totparc').value = this.totparc.value;
-		document.getElementById('valorparc').value = this.valorparc.value;
+$(function(){
+	$('.frmBaixar').on('submit', function(e){
+        e.preventDefault();
+        var inputs = $(this).serializeArray();
+		document.getElementById('idcli').value = inputs.find(e => e.name === 'idcli').value;
+		document.getElementById('idvenda').value = inputs.find(e => e.name === 'idvenda').value;
+		document.getElementById('idparc').value = inputs.find(e => e.name === 'idparc').value;
+		document.getElementById('totparc').value = inputs.find(e => e.name === 'totparc').value;
+		document.getElementById('valorparc').value = inputs.find(e => e.name === 'valorparc').value;
 		return false;
 	});
-}
+});
 </script>

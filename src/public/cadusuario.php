@@ -46,8 +46,8 @@
                         <td><select name="nivel">
 							<?php
                                 $sql = "select idnivel, nome from nivel";
-                                $resuldado = mysql_query($sql);
-                                while($linha = mysql_fetch_array($resuldado)){
+                                $resuldado = mysqli_query($GLOBALS['connection'], $sql);
+                                while($linha = mysqli_fetch_array($resuldado)){
                             ?>
                             <option value=<?php echo $linha['idnivel']; ?>> <?php echo $linha['nome']; ?></option>
                             <?php	

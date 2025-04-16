@@ -41,15 +41,15 @@
 		$iduf = $_GET['uf'];
 		$form = $_GET['form'];
 		$sql = "select cidade.*, uf.sigla from cidade, uf where cidade.iduf = $iduf and uf.iduf = $iduf order by cidade.nome";
-		$resultado = mysql_query($sql);
-		$numlinhas = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numlinhas = mysqli_num_rows($resultado);
 
        	if($numlinhas > 0){
 			?>
             Cidades - <a href= "#" onclick = "fechar('<?php echo $form;?>')">Trocar Estado</a>
           	<table border="1px">
             <?php
-                while($linha = mysql_fetch_array($resultado)){
+                while($linha = mysqli_fetch_array($resultado)){
                     $idcid = $linha['idcid'];
                     $nome = $linha['nome'];
                     $uf = $linha['sigla'];

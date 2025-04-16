@@ -61,8 +61,8 @@ br{
                    	</option>
 					<?php
                         $sql = "select iduf, nome from uf where iduf <> '".$_POST['uf']."' order by nome";
-                        $resuldado = mysql_query($sql);
-                        while($linha = mysql_fetch_array($resuldado)){
+                        $resuldado = mysqli_query($GLOBALS['connection'], $sql);
+                        while($linha = mysqli_fetch_array($resuldado)){
                     ?>
                     <option value="<?php echo $linha['iduf']; ?>"> <?php echo $linha['nome']; ?></option>
                     <?php	
@@ -76,8 +76,8 @@ br{
                    	</option>
                     <?php
                         $sql = "select idcid, nome from cidade where idcid <> '".$_POST['idcid']."' order by nome";
-                        $resuldado = mysql_query($sql);
-                        while($linha = mysql_fetch_array($resuldado)){
+                        $resuldado = mysqli_query($GLOBALS['connection'], $sql);
+                        while($linha = mysqli_fetch_array($resuldado)){
                     ?>
                     <option value="<?php echo $linha['idcid']; ?>"> <?php echo $linha['nome']; ?></option>
                     <?php	

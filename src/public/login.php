@@ -18,11 +18,11 @@
 			
 			//vusca o login informado no banco de dados
 			$sql = "select * from usuario where login = '$login'";
-			$resultado = mysql_query($sql);
-			$numLinhas = mysql_num_rows($resultado);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
+			$numLinhas = mysqli_num_rows($resultado);
 			
 			if(isset($numLinhas)){
-				$linha = mysql_fetch_assoc($resultado);
+				$linha = mysqli_fetch_assoc($resultado);
 				$status = $linha['status'];
 				
 				//verifica se o usuario existe, se é ativo ou inativo

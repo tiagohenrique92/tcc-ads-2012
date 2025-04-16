@@ -15,8 +15,8 @@
 	//verifica se o login escolhido no cadastro de usuario já está em uso
 	function verifLogin($login, $pagina){
 		$sql = "select login from usuario where(login like '%$login%')";
-		$resultado = mysql_query($sql);
-		$numRegistros = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numRegistros = mysqli_num_rows($resultado);
 		if(!empty($numRegistros)){
 			$_SESSION['msg'] = "O login ".$login." já está em uso. Por favor escolha outro.";
 			header("location: $pagina");
@@ -33,8 +33,8 @@
 		}else{
 			if($opcao == 'trocar'){
 				$sql = "select senha from usuario where idusuario = '".$idusuario."'";
-				$result = mysql_query($sql);
-				$senhaBd = mysql_fetch_assoc($result);
+				$result = mysqli_query($GLOBALS['connection'], $sql);
+				$senhaBd = mysqli_fetch_assoc($result);
 				$senhaBd = $senhaBd['senha'];
 				
 				if($senhaantiga != $senhaBd){
@@ -57,8 +57,8 @@
 	//realiza a soma dos itens de um pedido e retorna a soma
 	function somaTotal($idvenda){
 		$sql = "select sum(total) as total from itemvenda where idvenda = $idvenda";
-		$resultado = mysql_query($sql);
-		$linha = mysql_fetch_array($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$linha = mysqli_fetch_array($resultado);
 		$resultado = $linha['total'];
 		if(($resultado == 0) or (is_null($resultado))){
 			$totalvenda = 0;
