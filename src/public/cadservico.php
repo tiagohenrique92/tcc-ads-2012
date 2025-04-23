@@ -20,13 +20,13 @@
 			//verifica se é um novo pedido ou conclusão de um pedido já aberto
 			switch($tipo){
 				case "Novo":
-					$idpedido = 'NULL';
+					$idpedido = null;
 					$dataped = implode("/", array_reverse(explode("/", date("d/m/Y"))));
 					$sql = "insert into pedido(idpedido, idcli, dataped) value('$idpedido', '$idcli', '$dataped')";
 					
-					mysql_query($sql) or die("Erro para gravar o pedido - ".mysql_error());
+					mysqli_query($GLOBALS['connection'], $sql) or die("Erro para gravar o pedido - ".mysqli_error($GLOBALS['connection']));
 					$sql = "select max(idpedido) as idpedido from pedido";
-					$resultado = mysql_fetch_assoc(mysql_query($sql));
+					$resultado = mysqli_fetch_assoc(mysqli_query($GLOBALS['connection'], $sql));
 					$idpedido = $resultado['idpedido'];
 					$totalPed = 0;
 					$_SESSION['pedidoCadastrado'] = true;//registre a variavel pedido cadastrado
@@ -56,14 +56,14 @@
 						if(verificaCampos($ref, $descricao, $total) == "ok"){
 							//verifica se a referencia que o usuario quer cadastrar já existe no pedido				
 							$sql = "select idpedido, ref, descricao, valor, qtde, total, status from ipedido where (idpedido = $idpedido) and (ref = $ref)";
-							if(!mysql_query($sql)){
+							if(!mysqli_query($GLOBALS['connection'], $sql)){
 								echo "Erro  para bsucar o item. <br>";
 							}else{
-								$resultado = mysql_query($sql);
-								$numRegistros = mysql_num_rows($resultado);
+								$resultado = mysqli_query($GLOBALS['connection'], $sql);
+								$numRegistros = mysqli_num_rows($resultado);
 								if (empty($numRegistros)){ 
 									$sql = "insert into ipedido(iditem, idpedido, ref, descricao, valor, qtde, total, status) values('$iditem', '$idpedido', '$ref', '$descricao', '$valor', '$qtde', '$total', 'F')";
-									if(!mysql_query($sql)){
+									if(!mysqli_query($GLOBALS['connection'], $sql)){
 										echo "Erro  para gravar o item. <br>";
 									}else{
 										echo "<p style='background-color:#000000; color:#00FF00; font-size:18px'>Item gravado.</p>";
@@ -85,8 +85,8 @@
 						}else{
 							$sql = "update pedido set valor = $valorTotal, status = 'A', idconta = 0 where idpedido = $idpedido";
 						}
-						if(!mysql_query($sql)){
-							echo "Erro ao atualizar o valor total do pedido".mysql_error();
+						if(!mysqli_query($GLOBALS['connection'], $sql)){
+							echo "Erro ao atualizar o valor total do pedido".mysqli_error($GLOBALS['connection']);
 						}
 						unset(
 							$_SESSION['pedidoCadastrado'], 
@@ -114,7 +114,7 @@
 						if(verificaCampos($ref, $descricao, $total) == "ok"){
 							$sql = "update ipedido set descricao =  '$descricao', valor = $valor, qtde = $qtde, total = $total where (idpedido = $idpedido) and (iditem = $iditem)";
 							
-							if(!mysql_query($sql)){
+							if(!mysqli_query($GLOBALS['connection'], $sql)){
 								echo "Erro  para gravar o item. <br>";
 							}else{
 								echo "<p style='background-color:#000000; color:#00FF00; font-size:18px'>Item alterado.</p>";
@@ -130,7 +130,7 @@
 						$iditem = $_POST['iditem'];
 						$idpedido = $_SESSION['idpedido'];
 						$sql = "delete from ipedido where ((idpedido = $idpedido) and (iditem = $iditem))";
-						$resultado = mysql_query($sql);
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
 						echo "<p style='background-color:#FFFF00; color:#FF0000; font-size:18px'>O item foi excluído.</p>";
 					break;
 				}
@@ -147,8 +147,8 @@
 				
 				//busca dados do cliente través do id do pedido
 				$sql = "select * from cliente where idcli = (select idcli from pedido where idpedido = $idpedido)";
-				$resultado = mysql_query($sql);
-				while($linha = mysql_fetch_array($resultado)){
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
+				while($linha = mysqli_fetch_array($resultado)){
 					$idcli = $linha['idcli'];
 					$nome = $linha['nome'];
 					$fone = $linha['fone'];
@@ -201,8 +201,8 @@
 				if(isset($btnEnviar) and ($btnEnviar == "SelServico")){
 					$ref = $_POST['ref'];
 					$sql = "select iditem from ipedido where (idpedido = $idpedido) and (ref = $ref)";
-					$resultado = mysql_query($sql);
-					$iditem = mysql_fetch_assoc($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$iditem = mysqli_fetch_assoc($resultado);
 					$iditem = $iditem['iditem'];
 			?>
             	<form action="cadservico.php" method="post">
@@ -262,8 +262,8 @@
                 }
 				if(isset($_SESSION['pedidoCadastrado'])){
 					$sql = "select iditem, ref, descricao, valor, qtde, total from ipedido where idpedido = $idpedido";
-					$resultado = mysql_query($sql);
-					$numRegistros = mysql_num_rows($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$numRegistros = mysqli_num_rows($resultado);
 			?>	
 					<fieldset style="width:730px; color:#0099FF;">
             <?php
@@ -280,7 +280,7 @@
 							</tr>
             <?php
 						}
-								while($linha = mysql_fetch_array($resultado)){
+								while($linha = mysqli_fetch_array($resultado)){
 									$ref = $linha['ref'];
 									$descricao = $linha['descricao'];
 									$valor = $linha['valor'];

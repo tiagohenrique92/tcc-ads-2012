@@ -16,15 +16,15 @@
 		}
 	}
 	
-	$sql = "SELECT * FROM PRODUTO";
+	$sql = "SELECT * FROM produto";
 	
 	if(isset($where)){
 		$sql = $sql . $where;
 	}
-	$select = mysql_query($sql);
+	$select = mysqli_query($GLOBALS['connection'], $sql);
 	function listarProduto($select){
 		$i = 0;
-		while($produto = mysql_fetch_assoc($select)){
+		while($produto = mysqli_fetch_assoc($select)){
 			$i++;
 			?>
             <tr>

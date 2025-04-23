@@ -53,9 +53,9 @@
 							<?php
 								$uf = $_POST['uf'];
                                	$sql = "select iduf, nome from uf where iduf <> $uf order by nome";
-                                $result = mysql_query($sql);
+                                $result = mysqli_query($GLOBALS['connection'], $sql);
 								
-                                while($linha = mysql_fetch_array($result)){	
+                                while($linha = mysqli_fetch_array($result)){	
                             ?>
                             <option value="<?php echo $linha['iduf']; ?>">
                            		<?php echo $linha['nome']; ?>

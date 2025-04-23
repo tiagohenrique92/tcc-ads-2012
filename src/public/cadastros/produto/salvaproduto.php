@@ -47,12 +47,12 @@
 	}
 
 	if(empty($idpro)){
-		$sql = "insert into produto(idpro, nome, precocompra, precovenda, qtde, barras, status) values('NULL', '$nome', '$pcompra', '$pvenda', $qtde, $barras, '$status')";
+		$sql = "insert into produto(idpro, nome, precocompra, precovenda, qtde, barras, status) values(null, '$nome', '$pcompra', '$pvenda', $qtde, $barras, '$status')";
 	}else{
 		$sql = "update produto set nome = '$nome', precocompra = '$pcompra', precovenda = '$pvenda', barras = $barras, status = '$status', qtde = '$qtde' where idpro = $idpro";
 	}
-	if(!mysql_query($sql)){
-		echo mysql_error();
+	if(!mysqli_query($GLOBALS['connection'], $sql)){
+		echo mysqli_error($GLOBALS['connection']);
 		$resposta = array('erro'=>'1', 'campo'=>'', 'msg'=>'Erro ao salvar produto');
 		retorno($resposta);
 	}else{

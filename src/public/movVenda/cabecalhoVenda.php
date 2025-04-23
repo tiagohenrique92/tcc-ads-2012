@@ -2,8 +2,8 @@
 	require "../conection.php";
 	$idvenda = $_SESSION['idvenda'];
 	$sql = "select venda.*, cliente.nome from venda, cliente where idvenda = $idvenda and venda.idcli = cliente.idcli";
-	$resultado = mysql_query($sql);
-	$linha = mysql_fetch_assoc($resultado);
+	$resultado = mysqli_query($GLOBALS['connection'], $sql);
+	$linha = mysqli_fetch_assoc($resultado);
 ?>
 <style type="text/css">
 #tabela input{

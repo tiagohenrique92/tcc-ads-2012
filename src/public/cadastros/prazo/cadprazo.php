@@ -34,9 +34,9 @@
 						echo "Não é possivel cadastrar um prazo sem nome.";
 					}else{
 						$descricao = strtoupper($_GET['descricao']);
-						$sql = "insert into prazo values('NULL', '$descricao', 'A')";
-						$resultado = mysql_query($sql);
-						$idprazo = mysql_insert_id();
+						$sql = "insert into prazo values(null, '$descricao', 'A')";
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
+						$idprazo = mysqli_insert_id($GLOBALS['connection']);
 						header("location: caditemprazo.php?idprazo=$idprazo");
 					}				
 				}

@@ -34,8 +34,8 @@
 				if(isset($_GET['id'])){
 					$idcli = $_GET['id'];
 					$sql = "select * from venda where idcli = $idcli and status <> 'C'";
-					$resultado = mysql_query($sql);
-					$numresult = mysql_num_rows($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$numresult = mysqli_num_rows($resultado);
 					if($numresult < 1){
 						echo "Não foram encontradas vendas para este cliente.";
 					}else{
@@ -56,7 +56,7 @@
 								</td>
 							</tr>
 						<?php
-							while($linha = mysql_fetch_assoc($resultado)){
+							while($linha = mysqli_fetch_assoc($resultado)){
 								?>
 								<tr>
 									<td>
@@ -82,7 +82,7 @@
 				if(isset($_GET['idvenda'])){
 					$idvenda = $_GET['idvenda'];
 					$sql = "update venda set status = 'C' where idvenda = $idvenda";
-					$resultado = mysql_query($sql) or die(mysql_error());;
+					$resultado = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']));;
 					header("location: index.php");
 				}
 			?>

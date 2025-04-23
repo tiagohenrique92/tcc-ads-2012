@@ -1,246 +1,13 @@
-/*
-Created		31/03/2012
-Modified		30/09/2012
-Project		
-Model		
-Company		
-Author		
-Version		
-Database		mySQL 5 
-*/
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-drop table IF EXISTS parcelarec;
-drop table IF EXISTS parcelapag;
-drop table IF EXISTS itemvenda;
-drop table IF EXISTS itemCompra;
-drop table IF EXISTS usuario;
-drop table IF EXISTS venda;
-drop table IF EXISTS compra;
-drop table IF EXISTS iprazo;
-drop table IF EXISTS prazo;
-drop table IF EXISTS cliente;
-drop table IF EXISTS fornecedor;
-drop table IF EXISTS cidade;
-drop table IF EXISTS uf;
-drop table IF EXISTS caixa;
-drop table IF EXISTS produto;
-drop table IF EXISTS nivel;
-
-
-
-
-Create table nivel (
-	idnivel Int NOT NULL AUTO_INCREMENT,
-	nome Varchar(25) NOT NULL,
-	descricao Varchar(180) NOT NULL,
- Primary Key (idnivel)
-) ENGINE = InnoDB;
-
-Create table produto (
-	idpro Int NOT NULL AUTO_INCREMENT,
-	nome Varchar(60) NOT NULL,
-	precocompra Float(10,2) NOT NULL,
-	precovenda Float(10,2) NOT NULL,
-	barras Int,
-	qtde Int NOT NULL,
-	status Char(1) NOT NULL,
- Primary Key (idpro)
-) ENGINE = InnoDB;
-
-Create table caixa (
-	idcaixa Int NOT NULL AUTO_INCREMENT,
-	datacaixa Date NOT NULL,
-	valor Float(10,2),
-	status Char(1) NOT NULL,
- Primary Key (idcaixa)
-) ENGINE = InnoDB;
-
-Create table uf (
-	iduf Int NOT NULL AUTO_INCREMENT,
-	sigla Char(2) NOT NULL,
-	nome Varchar(30) NOT NULL,
- Primary Key (iduf)
-) ENGINE = InnoDB;
-
-Create table cidade (
-	idcid Int NOT NULL AUTO_INCREMENT,
-	nome Varchar(200) NOT NULL,
-	iduf Int NOT NULL,
- Primary Key (idcid),
- Foreign Key (iduf) references uf (iduf) on delete cascade on update cascade
-) ENGINE = InnoDB;
-
-Create table fornecedor (
-	idfor Int NOT NULL AUTO_INCREMENT,
-	idcid Int NOT NULL,
-	iduf Int NOT NULL,
-	razsoc Varchar(150) NOT NULL,
-	fantasia Varchar(100) NOT NULL,
-	endereco Varchar(60) NOT NULL,
-	bairro Varchar(30) NOT NULL,
-	cep Varchar(10),
-	fone Varchar(20),
-	ierg Varchar(20) NOT NULL,
-	cnpjcpf Varchar(25) NOT NULL,
-	status Char(1) NOT NULL,
-	celular Varchar(20),
-	email Varchar(150),
-	contato Varchar(30) NOT NULL,
-	tipo Char(1),
- Primary Key (idfor),
- Foreign Key (iduf) references uf (iduf) on delete  restrict on update  restrict,
- Foreign Key (idcid) references cidade (idcid) on delete cascade on update cascade
-) ENGINE = InnoDB;
-
-Create table cliente (
-	idcli Int NOT NULL AUTO_INCREMENT,
-	idcid Int NOT NULL,
-	iduf Int NOT NULL,
-	nome Varchar(200) NOT NULL,
-	cnpjcpf Varchar(25),
-	ierg Varchar(20),
-	endereco Varchar(130),
-	bairro Varchar(100),
-	cep Varchar(10) NOT NULL,
-	fone Varchar(20),
-	celular Varchar(20),
-	email Varchar(130),
-	contato Varchar(30),
-	status Char(1) NOT NULL,
-	tipo Char(1) NOT NULL,
-	UNIQUE (cnpjcpf),
- Primary Key (idcli),
- Foreign Key (iduf) references uf (iduf) on delete  restrict on update  restrict,
- Foreign Key (idcid) references cidade (idcid) on delete cascade on update cascade
-) ENGINE = InnoDB;
-
-Create table prazo (
-	idprazo Int NOT NULL AUTO_INCREMENT,
-	nome Varchar(60) NOT NULL,
-	status Char(1) NOT NULL,
- Primary Key (idprazo)
-) ENGINE = InnoDB;
-
-Create table iprazo (
-	iditemprazo Int NOT NULL AUTO_INCREMENT,
-	idprazo Int NOT NULL,
-	dias Int NOT NULL,
- Primary Key (iditemprazo,idprazo),
- Foreign Key (idprazo) references prazo (idprazo) on delete cascade on update cascade
-) ENGINE = InnoDB;
-
-Create table compra (
-	idcompra Int NOT NULL AUTO_INCREMENT,
-	datacompra Date NOT NULL,
-	totalcompra Float(10,2) NOT NULL,
-	status Char(2) NOT NULL,
-	prazo Int,
-	idfor Int NOT NULL,
- Primary Key (idcompra),
- Foreign Key (idfor) references fornecedor (idfor) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table venda (
-	idvenda Int NOT NULL AUTO_INCREMENT,
-	datavenda Date,
-	totalvenda Float(10,2),
-	status Char(2),
-	prazo Int,
-	idcli Int NOT NULL,
- Primary Key (idvenda),
- Foreign Key (idcli) references cliente (idcli) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table usuario (
-	idusuario Int NOT NULL AUTO_INCREMENT,
-	idnivel Int NOT NULL,
-	login Varchar(20) NOT NULL,
-	senha Varchar(200) NOT NULL,
-	nome Varchar(30) NOT NULL,
-	editor Int NOT NULL,
-	status Char(1) NOT NULL,
-	UNIQUE (login),
- Primary Key (idusuario),
- Foreign Key (idnivel) references nivel (idnivel) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table itemCompra (
-	idcompra Int NOT NULL,
-	idpro Int NOT NULL,
-	qtde Int NOT NULL,
-	precocompra Float(10,2) NOT NULL,
-	precovenda Char(20) NOT NULL,
-	total Float(10,2) NOT NULL,
- Primary Key (idcompra,idpro),
- Foreign Key (idcompra) references compra (idcompra) on delete  restrict on update  restrict,
- Foreign Key (idpro) references produto (idpro) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table itemvenda (
-	idvenda Int NOT NULL,
-	idpro Int NOT NULL,
-	qtde Int,
-	precovenda Float(10,2),
-	total Float(10,2),
- Primary Key (idvenda,idpro),
- Foreign Key (idvenda) references venda (idvenda) on delete  restrict on update  restrict,
- Foreign Key (idpro) references produto (idpro) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table parcelapag (
-	idparc Int NOT NULL AUTO_INCREMENT,
-	idcompra Int NOT NULL,
-	numparc Int NOT NULL,
-	totparc Int NOT NULL,
-	datavenc Date NOT NULL,
-	datapag Date,
-	valorparc Float(10,2) NOT NULL,
-	valorpago Float(10,2),
-	status Char(20) NOT NULL,
-	idcaixa Int,
- Primary Key (idparc),
- Foreign Key (idcompra) references compra (idcompra) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-Create table parcelarec (
-	idparc Int NOT NULL AUTO_INCREMENT,
-	numparc Int,
-	totparc Int,
-	datavenc Date,
-	datapag Date,
-	valorparc Float(10,2),
-	valorrec Float(10,2),
-	status Char(20),
-	idvenda Int NOT NULL,
-	idcaixa Int,
- Primary Key (idparc),
- Foreign Key (idvenda) references venda (idvenda) on delete  restrict on update  restrict
-) ENGINE = InnoDB;
-
-
-
-INSERT INTO `nivel` VALUES
-(1, 'ADMIN', 'ADMINISTRADOR'), 
-(2, 'VENDEDOR', 'VENDEDOR'), 
-(3, 'FINANCEIRO', 'FINANCEIRO'), 
-(4, 'COMPRADOR', 'COMPRADOR');
-INSERT INTO `uf` (`iduf`, `sigla`, `nome`) VALUES
+INSERT INTO `uf` (`iduf`, `sigla`, `nome`)
+VALUES
 (1, 'AC', 'ACRE'),
 (2, 'AL', 'ALAGOAS'),
 (3, 'AM', 'AMAZONAS'),
@@ -268,7 +35,9 @@ INSERT INTO `uf` (`iduf`, `sigla`, `nome`) VALUES
 (25, 'SE', 'SERGIPE'),
 (26, 'SP', 'SAO PAULO'),
 (27, 'TO', 'TOCANTINS');
-INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
+
+INSERT INTO `cidade` (`idcid`, `nome`, `iduf`)
+VALUES
 (1, 'ALTA FLORESTA D''OESTE', 21),
 (2, 'ARIQUEMES', 21),
 (3, 'CABIXI', 21),
@@ -2272,7 +2041,8 @@ INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
 (2001, 'ITABELA', 5),
 (2002, 'ITABERABA', 5),
 (2003, 'ITABUNA', 5);
-INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
+INSERT INTO `cidade` (`idcid`, `nome`, `iduf`)
+VALUES
 (2004, 'ITACARE', 5),
 (2005, 'ITAETE', 5),
 (2006, 'ITAGI', 5),
@@ -4254,7 +4024,8 @@ INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
 (3982, 'CATANDUVAS', 18),
 (3983, 'CENTENARIO DO SUL', 18),
 (3984, 'CERRO AZUL', 18);
-INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
+INSERT INTO `cidade` (`idcid`, `nome`, `iduf`)
+VALUES
 (3985, 'CEU AZUL', 18),
 (3986, 'CHOPINZINHO', 18),
 (3987, 'CIANORTE', 18),
@@ -5867,138 +5638,41 @@ INSERT INTO `cidade` (`idcid`, `nome`, `iduf`) VALUES
 (5594, 'JARDIM BOTANICO', 7),
 (5595, 'SUDOESTE/OCTOGONAL', 7),
 (5596, 'SETOR DE INDUSTRIA E ABASTECIMENTO', 7),
-(5597, 'VICENTE PIRES', 7);
+(5597, 'VICENTE PIRES', 7),
+(5598, 'AMANTEIGADOS', 18),
+(5599, 'PIRIPOCA', 1),
+(5601, 'VIDIGAL', 18),
+(5602, 'SAO LOURENCO', 18);
 
-INSERT INTO `usuario` VALUES
-(1, 1, 'DBA', '1c7a5a3be83af765b28764558bb81ce3', 'TIAGO', 0, 'A');
+INSERT INTO `prazo` (`idprazo`, `nome`, `status`)
+VALUES
+(1, 'A VISTA', 'A'),
+(2, 'ENT/30/60', 'A'),
+(3, 'ENT/30/60/90', 'A');
 
+INSERT INTO `iprazo` (`iditemprazo`, `idprazo`, `dias`)
+VALUES
+(1, 1, 0),
+(2, 2, 0),
+(3, 2, 30),
+(4, 2, 60),
+(5, 3, 0),
+(6, 3, 30),
+(7, 3, 60),
+(8, 3, 90);
 
+INSERT INTO `nivel` (`idnivel`, `nome`, `descricao`)
+VALUES
+(1, 'ADMIN', 'ADMINISTRADOR'),
+(2, 'VENDEDOR', 'VENDEDOR'),
+(3, 'FINANCEIRO', 'FINANCEIRO'),
+(4, 'COMPRADOR', 'COMPRADOR');
 
+INSERT INTO `usuario` (`idusuario`, `idnivel`, `login`, `senha`, `nome`, `editor`, `status`)
+VALUES
+(1, 1, 'DBA', '1c7a5a3be83af765b28764558bb81ce3', 'TIAGO', 1, 'A'),
+(2, 4, 'TIAGO', 'dff29d89fa543808388115aa363636b4', 'TIAGO HENRIQUE', 1, 'A');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-delimiter |
-drop trigger if exists at_pro_venda_insert|
-create trigger at_pro_venda_insert
-after insert on itemvenda
-for each row
-begin
-   update produto set qtde = (qtde - new.qtde) where idpro = new.idpro;
-end;
-|
-
-delimiter |
-drop trigger if exists at_pro_venda_update |
-create trigger at_pro_venda_update
-after update on itemvenda
-for each row
-begin
-   update produto set qtde = ((qtde + old.qtde) - new.qtde) where idpro = new.idpro;
-end;
-|
-
-delimiter |
-drop trigger if exists at_pro_venda_delete |
-create trigger at_pro_venda_delete
-after delete on itemvenda
-for each row
-begin
-   update produto set qtde = (qtde + old.qtde) where idpro = old.idpro;
-end;
-|
-
-delimiter |
-drop trigger if exists at_compra_paga |
-create trigger at_compra_paga
-after update on parcelapag
-for each row
-begin
-	declare numparc int;
-	if new.status = 'PG' then
-		set numparc = (select count(*) as total_parc from parcelapag where status = 'AB' and idcompra = new.idcompra group by idcompra);
-		if (numparc is null) then
-			update compra set status = 'PG' where idcompra = new.idcompra;
-		else 
-			update compra set status = 'PA' where idcompra = new.idcompra;
-		end if;
-	end if;
-end;
-|
-
-delimiter |
-drop trigger if exists at_venda_paga |
-create trigger at_venda_paga
-after update on parcelarec
-for each row
-begin
-	declare numparc int;
-	if new.status = 'PG' then
-		set numparc = (select count(*) as total_parc from parcelarec where status = 'AB' and idvenda = new.idvenda group by idvenda);
-		if (numparc is null) then
-			update venda set status = 'PG' where idvenda = new.idvenda;
-		else 
-			update venda set status = 'PA' where idvenda = new.idvenda;
-		end if;
-	end if;
-end;
-|
-
-delimiter |
-DROP TRIGGER IF EXISTS at_parcrec_vend_canc |
-
-CREATE TRIGGER `at_parcpag_compra_canc`
-
-AFTER UPDATE ON `compra` FOR EACH ROW
-begin
-	
-	if new.status = 'C' then
-		
-		update parcelapag set status = 'C', idcaixa = (select max(idcaixa) as idcaixa from caixa) 
-		where idcompra = new.idcompra;
-		
-		update itemcompra set qtde = 0, total = 0 
-		where idcompra = new.idcompra;
-	
-	end if;
-
-end;
-|
-
-delimiter |
-drop trigger if exists at_parcrec_vend_canc |
-create trigger at_parcrec_vend_canc
-after update on venda
-for each row
-begin
-	if new.status = 'C' then
-		update parcelarec set status = 'C', idcaixa = (select max(idcaixa) as idcaixa from caixa) where idvenda = new.idvenda;
-		update itemvenda set qtde = 0, total = 0 where idvenda = new.idvenda;
-	end if;
-end;
-|
-
-
-
-
-
-
-
-/* Users permissions */
-
-
-
-
-
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

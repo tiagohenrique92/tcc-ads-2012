@@ -10,10 +10,10 @@
 		$datapag = $datacaixa;
 		$sql = "update parcelarec set status = '$status', valorrec = '$valorparc', idcaixa = '$caixa', datapag = '$datapag' where idvenda = $idvenda and numparc = $idparc";
 		
-		if(mysql_query($sql)){
+		if(mysqli_query($GLOBALS['connection'], $sql)){
 			$resposta = array("erro"=>0, "msg"=>"Parcela recebida.");
 		}else{
-			$resposta = array("erro"=>1, "msg"=>"Erro ao receber parcela.".mysql_error());
+			$resposta = array("erro"=>1, "msg"=>"Erro ao receber parcela.".mysqli_error($GLOBALS['connection']));
 		}
 		$resposta = json_encode($resposta);
 		echo $resposta;

@@ -30,7 +30,7 @@
 					echo $numparc;
 				}else{
 					$sql = "select * from prazo order by nome";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					
 					?>
                     <form name="frmgeraparcelas" action="salvavenda.php" method="post" onsubmit="return pausa()">
@@ -40,7 +40,7 @@
                         <select name="prazo" onblur="abreTelaParc(prazo.value, '<?php echo $idvenda; ?>', '<?php echo $totalvenda; ?>', ent.value, form.name)">
                         	<option value="Selecione" selected="selected">Selecione</option>
                         	<?php
-								while($linha = mysql_fetch_array($resultado)){
+								while($linha = mysqli_fetch_array($resultado)){
 									?>
                                     	<option value="<?php echo $linha['idprazo']; ?>"><?php echo $linha['nome'];?></option>
                                     <?php

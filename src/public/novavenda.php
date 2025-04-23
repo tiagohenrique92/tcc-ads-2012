@@ -24,12 +24,12 @@
 				if($_GET){
 					$idcli = $_GET['id'];
 					$data = $_SESSION['datacaixa'];
-					$sql = "insert into venda(idvenda, datavenda, status, idcli) values('NULL', '$data', 'A', $idcli)";
-					$resultado = mysql_query($sql);
+					$sql = "insert into venda(idvenda, datavenda, status, idcli) values(null, '$data', 'A', $idcli)";
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					$_SESSION['vendaCadastrada'] = true;
 					$sql = "select max(idvenda) as idvenda from venda";
-					$resultado = mysql_query($sql);
-					$linha = mysql_fetch_assoc($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$linha = mysqli_fetch_assoc($resultado);
 					$_SESSION['idvenda'] = $linha['idvenda'];
 					header("location: venda.php");
 				}
@@ -49,8 +49,8 @@
 					if($_SESSION['vendaCadastrada'] == true){
 						$idvenda = $_SESSION['idvenda'];
 						$sql = "select itemvenda.*, produto.nome from itemvenda, produto where idvenda = $idvenda and itemvenda.idpro = produto.idpro";
-						$resultado = mysql_query($sql);
-						$numlinha = mysql_num_rows($resultado);
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
+						$numlinha = mysqli_num_rows($resultado);
 						if($numlinha > 0){
 							?>
                             <fieldset style="width:670px">
@@ -68,7 +68,7 @@
                                     </tr>
 								<?php
 								$totalvenda = 0;
-								while($linha = mysql_fetch_assoc($resultado)){
+								while($linha = mysqli_fetch_assoc($resultado)){
 									$idpro = $linha['idpro'];
 									$nome = $linha['nome'];
 									$preco = $linha['precovenda'];
@@ -118,13 +118,13 @@
 						case "B":
 							$barras = $_POST['barras'];
 							$sql = "select * from produto where barras = $barras and status = 'A' and idpro not in (select idpro from itemvenda where idvenda = $idvenda) order by nome";
-							$resultado = mysql_query($sql);
-							$numlinha = mysql_num_rows($resultado);
+							$resultado = mysqli_query($GLOBALS['connection'], $sql);
+							$numlinha = mysqli_num_rows($resultado);
 							if($numlinha <> 1){
 								echo "<br />A pesquisa não encontrou resultados.";
 								exit();
 							}else{
-								$linha = mysql_fetch_assoc($resultado);
+								$linha = mysqli_fetch_assoc($resultado);
 								$idpro = $linha['idpro'];
 								$nome = $linha['nome'];
 								$preco = $linha['precovenda'];
@@ -136,8 +136,8 @@
 						case "N";
 							$nome = $_POST['nome'];
 							$sql = "select * from produto where nome like '%$nome%' and status = 'A' and idpro not in (select idpro from itemvenda where idvenda = $idvenda) order by nome";
-							$resultado = mysql_query($sql);
-							$numlinha = mysql_num_rows($resultado);
+							$resultado = mysqli_query($GLOBALS['connection'], $sql);
+							$numlinha = mysqli_num_rows($resultado);
 							if($numlinha < 1){
 								echo "<br />A pesquisa não encontrou resultados.";
 								exit();
@@ -152,7 +152,7 @@
                                         <td>Barras</td>
                                     </tr>
 								<?php
-								while($linha = mysql_fetch_assoc($resultado)){
+								while($linha = mysqli_fetch_assoc($resultado)){
 									$idpro = $linha['idpro'];
 									$nome = $linha['nome'];
 									$preco = $linha['precovenda'];

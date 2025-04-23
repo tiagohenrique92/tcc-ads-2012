@@ -1,7 +1,6 @@
 <?php
-	$pre = "https://";
-	$root = $_SERVER['SERVER_NAME']."/";
-	$caminho = "dropbox/Pear/";
+	$pre = "http://";
+    $root = "localhost/";
 	
-	$_SESSION['servidor'] = $pre.$root.$caminho;
+	$_SESSION['servidor'] = $pre.$root;
 	

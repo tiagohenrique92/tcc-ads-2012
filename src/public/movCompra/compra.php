@@ -101,7 +101,7 @@
             <div id="valores">
             	<?php
                 	$sql = "select * from prazo where (status = 'A') order by nome";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 				?>
             	<form name="frmValores" id="frmValores" onsubmit="return false">
                 	<label for="subtotal" style="width:61px; display:inline-block">Sub-Total</label>
@@ -117,7 +117,7 @@
                     <label for="prazo" style="width:59px; display:inline-block;" >Prazo</label>
                     <select name="prazo" id="prazo">
                     <?php
-						while($linha = mysql_fetch_array($resultado)){
+						while($linha = mysqli_fetch_array($resultado)){
 							?>
 								<option value="<?php echo $linha['idprazo']; ?>"><?php echo $linha['nome'];?></option>
 							<?php

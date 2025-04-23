@@ -25,8 +25,8 @@
 					$cidade = $_GET['cidade'];
 					$uf = $_GET['uf'];
                     $sql = "select nome from uf where iduf = $uf";
-                    $resultado = mysql_query($sql);
-					$estado = mysql_fetch_assoc($resultado);
+                    $resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$estado = mysqli_fetch_assoc($resultado);
 					$estado = $estado['nome'];					
 					?>
 					<fieldset>
@@ -49,8 +49,8 @@
                             <select name="uf">
 							<?php
                                 $sql = "select iduf, nome from uf order by nome";
-                                $resultado = mysql_query($sql);
-                                while($linha = mysql_fetch_array($resultado)){
+                                $resultado = mysqli_query($GLOBALS['connection'], $sql);
+                                while($linha = mysqli_fetch_array($resultado)){
                             ?>
                             <option value="<?php echo $linha['iduf']; ?>"> <?php echo $linha['nome']; ?></option>
                             <?php	
@@ -66,8 +66,8 @@
 					$uf = $_POST['uf'];
 					$cidade = strtoupper($_POST['cidade']);
 					$sql = "select cidade.nome as cidade, uf.nome as uf from cidade, uf where cidade.nome like '%$cidade%' and cidade.iduf = $uf and cidade.iduf = uf.iduf order by cidade";
-					$resultado = mysql_query($sql) or die(mysql_error());
-					$numlinha = mysql_num_rows($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']));
+					$numlinha = mysqli_num_rows($resultado);
 					if($numlinha < 1){
 						echo "Nenhum resultado foi encontrado para: ".$cidade." no estado informado.<br>";
 						echo "Deseja cadastrar ".$cidade."?";
@@ -92,7 +92,7 @@
                                    	</td>
                                 </tr>
                                 <?php
-									while($linha = mysql_fetch_array($resultado)){
+									while($linha = mysqli_fetch_array($resultado)){
 										?>
                                         <tr>
                                         	<td>

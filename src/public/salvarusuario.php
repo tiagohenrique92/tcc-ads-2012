@@ -26,12 +26,12 @@
 			case "Salvar" :
 				verifCampos($nome, $login, $senha, $confsenha, $pagina, $status);
 				verifLogin($login, $pagina);
-				verifSenhas('null', $senha, $confsenha, $pagina, 'salvar', $idusuario);
+				verifSenhas(null, $senha, $confsenha, $pagina, 'salvar', $idusuario);
 				
 				$senha = md5($senha."KEY");
 				$confsenha = md5($confsenha."KEY");
 				
-				$sql = "insert into usuario (idusuario, nome, login, senha, idnivel, status, editor) values('NULL', '$nome', '$login', '$senha', '$nivel', '$status', '$editor')";
+				$sql = "insert into usuario (idusuario, nome, login, senha, idnivel, status, editor) values(null, '$nome', '$login', '$senha', '$nivel', '$status', '$editor')";
 			break;
 			case "Trocar" :
 				$senhaantiga = md5(strtoupper($_POST['senhaantiga'])."KEY");
@@ -46,7 +46,7 @@
 			break;
 			case "Alterar" :
 				verifCampos($nome, $login, $senha, $confsenha, $pagina, $status);
-				verifSenhas('null', $senha, $confsenha, $pagina, 'alterar', $idusuario);			
+				verifSenhas(null, $senha, $confsenha, $pagina, 'alterar', $idusuario);			
 				
 				$senha = md5($senha."KEY");
 				$confsenha = md5($confsenha."KEY");
@@ -57,7 +57,7 @@
 		}
 		
 		//verifica se o sistema salvou os dados e redireciona o usuario para a index.php
-		if(mysql_query($sql)){
+		if(mysqli_query($GLOBALS['connection'], $sql)){
 			if(($idusuario == $_SESSION['idusuario']) and ($status = 'I')){
 				unset($_SESSION['logado']);
 			}
@@ -68,7 +68,7 @@
 			header("location: index.php");
 		}else{
 			echo "Erro ao salvar usuario. <br>";
-			echo "Erro: ".mysql_error();
+			echo "Erro: ".mysqli_error($GLOBALS['connection']);
 		}			
 	?>
 </body>

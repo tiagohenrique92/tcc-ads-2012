@@ -35,8 +35,8 @@
 					$login = $_POST['login'];
 					$numLinha = 0;
 					$sql = "select usuario.*, nivel.nome as nomenivel from usuario, nivel where (login like '%$login%') and (idusuario > 1) and (usuario.idnivel = nivel.idnivel)";
-					$resultado = mysql_query($sql);
-					$numRegistros = mysql_num_rows($resultado);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
+					$numRegistros = mysqli_num_rows($resultado);
 					if(!empty($numRegistros)){
 			?>
             <table>
@@ -50,7 +50,7 @@
                 </tr>
             <?php			
 					}
-					while($linha = mysql_fetch_array($resultado)){
+					while($linha = mysqli_fetch_array($resultado)){
 						$numLinha++;
 						if($numLinha % 2 == 0){
 							$corLinha = "linhaClara2";

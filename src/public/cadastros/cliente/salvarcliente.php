@@ -64,19 +64,19 @@
 	
 	switch ($opcao){
 		case "Salvar" :
-			$sql = "insert into cliente (idcli, nome, cnpjcpf, ierg, endereco, bairro, idcid, iduf, cep, fone, celular, email, contato, status, tipo) values('NULL', '$nome', '$cnpjcpf', '$ierg', '$endereco', '$bairro', '$idcid', '$uf', '$cep', '$fone', '$celular', '$email', '$contato', '$status', '$tipo')";
+			$sql = "insert into cliente (idcli, nome, cnpjcpf, ierg, endereco, bairro, idcid, cep, fone, celular, email, contato, status, tipo) values(null, '$nome', '$cnpjcpf', '$ierg', '$endereco', '$bairro', '$idcid', '$cep', '$fone', '$celular', '$email', '$contato', '$status', '$tipo')";
 	  	break;
 	  	case "Alterar" :
-			$sql = "update cliente set nome = '$nome', cnpjcpf = '$cnpjcpf', ierg = '$ierg', endereco = '$endereco', bairro = '$bairro', idcid = '$idcid', iduf = '$uf', cep = '$cep', fone = '$fone', celular = '$celular', email = '$email', contato = '$contato', status = '$status' where idcli = '$idcli'";
+			$sql = "update cliente set nome = '$nome', cnpjcpf = '$cnpjcpf', ierg = '$ierg', endereco = '$endereco', bairro = '$bairro', idcid = '$idcid', cep = '$cep', fone = '$fone', celular = '$celular', email = '$email', contato = '$contato', status = '$status' where idcli = '$idcli'";
 	  	break;
 	}
 	
-	$insert = mysql_query($sql);
-	if(mysql_errno() == 0){
+	$insert = mysqli_query($GLOBALS['connection'], $sql);
+	if(mysqli_errno($GLOBALS['connection']) == 0){
 		$resposta = array('erro'=>'0', 'campo'=>'', 'msg'=>'Cliente cadastrado');
 		retorno($resposta);
 	}else{
-		switch(mysql_errno()){
+		switch(mysqli_errno($GLOBALS['connection'])){
 			case '1062':
 	  			if($tipo == 'F'){
 					$resposta = array('erro'=>'1', 'campo'=>'cnpjcpf', 'msg'=>'Ops! O CPF informado já está cadastrado.');

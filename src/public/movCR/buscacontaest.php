@@ -26,8 +26,8 @@
 					if(isset($_GET['id'])){
 						$idcli = $_GET['id'];
 						$sql = "select * from cliente where idcli = ".$idcli;
-						$resultado = mysql_query($sql);
-						$cliente = mysql_fetch_assoc($resultado);
+						$resultado = mysqli_query($GLOBALS['connection'], $sql);
+						$cliente = mysqli_fetch_assoc($resultado);
 						$nome = $cliente['nome'];
 					}
 				?>

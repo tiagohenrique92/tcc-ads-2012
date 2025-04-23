@@ -10,7 +10,7 @@
 		
 		$sql = "insert into itemcompra(idcompra, idpro, qtde, precocompra, total) values($idcompra, $idpro, $qtde, $preco, $total)";
 		
-		$resultado = mysql_query($sql) or die(mysql_error());
+		$resultado = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']));
 		
 	}
 ?>

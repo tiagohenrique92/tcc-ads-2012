@@ -24,7 +24,7 @@
 					$idcli = $_GET['id'];
 					$ordem = $_GET['ordem'];
 					$sql = "select parcelarec.*, venda.idcli, venda.datavenda from parcelarec, venda where (venda.idcli = $idcli) and (parcelarec.idvenda = venda.idvenda) and (parcelarec.status = 'A') order by $ordem, numparc, idvenda";
-					$resultado = mysql_query($sql);
+					$resultado = mysqli_query($GLOBALS['connection'], $sql);
 					?>
                     <hr />
                     <form action="buscacontarec.php" method="get">
@@ -49,7 +49,7 @@
                             <td width="50px">Baixar</td>
                         </tr>
                 	<?php
-					while($linha = mysql_fetch_array($resultado)){
+					while($linha = mysqli_fetch_array($resultado)){
 						$idvenda = $linha['idvenda'];
 						$datavenda = implode("/", array_reverse(explode("-", $linha['datavenda'])));
 						$idparc = $linha['numparc'];

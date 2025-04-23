@@ -10,8 +10,8 @@
 	}
 
 	$sql = "select prazo.nome, iprazo.* from prazo, iprazo where (prazo.idprazo = $prazo) and (iprazo.idprazo = $prazo) order by dias";
-	$resultado = mysql_query($sql);
-	$numlin = mysql_num_rows($resultado);
+	$resultado = mysqli_query($GLOBALS['connection'], $sql);
+	$numlin = mysqli_num_rows($resultado);
 	$valorparc = number_format($valorfinal / $numlin, 2);
 	$total = 0;
 ?>
@@ -25,7 +25,7 @@
 <table>
 <?php
 
-	while($linha = mysql_fetch_assoc($resultado)){
+	while($linha = mysqli_fetch_assoc($resultado)){
 		$num++;
 		if($numlin == 1){//parcela unica
 		?>

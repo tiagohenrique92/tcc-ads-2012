@@ -9,8 +9,8 @@
 	<?php
 	//seleciona a venda que ainda está em abeto
 	$sql = "select venda.idvenda, venda.idcli, datavenda, cliente.nome from venda, cliente where ((cliente.idcli = venda.idcli) and (totalvenda is NULL)) order by nome";
-		$resultado = mysql_query($sql);
-		$numLinha = mysql_num_rows($resultado);
+		$resultado = mysqli_query($GLOBALS['connection'], $sql);
+		$numLinha = mysqli_num_rows($resultado);
 		if ($numLinha > 0){
 			$numLinha = 0;
 			echo "<h1>Atenção:</h1><p style='color:#FF0000; font-size:18px'>O sistema detectou a presença de uma venda que não foi gravada.<br> Antes de abrir novas vendas você deverá Gravar ou Cancelar esta venda.</p>";
@@ -29,7 +29,7 @@
                 </tr>
             <?php
 			//lista a venda em aberto
-			while($linha = mysql_fetch_array($resultado)){
+			while($linha = mysqli_fetch_array($resultado)){
 			?>
             	<tr>
                 	<form action="cadvenda.php" method="post">

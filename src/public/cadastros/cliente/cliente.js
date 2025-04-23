@@ -49,16 +49,13 @@ function alterarCliente(nome){
 
 //escolhe qual pagina vai ser aberta para alterar cliene
 function destinoAlterarCliente(tipo, form){
-	var tipo = tipo;
-	var form = form;
-	
 	if(tipo == 'F'){
-		document.forms[form].action = 'alterarclientefis.php';
-		document.forms[form].submit();
+		$('form[name='+form+']').action = 'alterarclientefis.php';
+		$('form[name='+form+']').submit();
 	}
 	if(tipo == 'J'){
-		document.forms[form].action = 'alterarclientejur.php';
-		document.forms[form].submit();
+		$('form[name=form]').action = 'alterarclientejur.php';
+		$('form[name=form]').submit();
 	}
 }
 

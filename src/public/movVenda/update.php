@@ -10,12 +10,12 @@
 		
 		if($qtde == 0){
 			$sql = "delete from itemvenda where idvenda = $idvenda and idpro = $idpro";	
-			$resultado = mysql_query($sql) or die(mysql_error());
+			$resultado = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']));
 		}
 		
 		if($qtde > 0){	
 			$sql = "update itemvenda set qtde = $qtde, total = '$total' where idvenda = $idvenda and idpro = $idpro";
-			$resultado = mysql_query($sql) or die(mysql_error());
+			$resultado = mysqli_query($GLOBALS['connection'], $sql) or die(mysqli_error($GLOBALS['connection']));
 		}
 		
 	}

@@ -29,8 +29,8 @@
 			$_SESSION['valorfinal'] = $valorfinal = $valor - $desconto;
 			$num = 0;
 			$sql = "select prazo.nome, iprazo.* from prazo, iprazo where (prazo.idprazo = $prazo) and (iprazo.idprazo = $prazo) order by dias";
-			$resultado = mysql_query($sql);
-			$numlin = mysql_num_rows($resultado);
+			$resultado = mysqli_query($GLOBALS['connection'], $sql);
+			$numlin = mysqli_num_rows($resultado);
 			$valorparc = number_format($valorfinal / $numlin, 2);
 			$total = 0;
 	
@@ -45,7 +45,7 @@
 				<form action="parcelas.php" method="post">
 				<input type="hidden" name="form" value="<?php echo $form; ?>" />
 			<?php
-			while($linha = mysql_fetch_array($resultado)){
+			while($linha = mysqli_fetch_array($resultado)){
 				$num++;
 				if($numlin == 1){//parcela unica
 				?>
@@ -160,8 +160,8 @@
 				$status = $parcelas[$i][4];
 				$idvenda = $parcelas[$i][5];
 				
-				$sql = "insert into parcelarec(idparc, numparc, totparc, datavenc, valorparc, status, idvenda) values('NULL',$numparc, $totalparc, '$datavcto', $valorparc, '$status', $idvenda)";
-				$resultado = mysql_query($sql);
+				$sql = "insert into parcelarec(idparc, numparc, totparc, datavenc, valorparc, status, idvenda) values(null,$numparc, $totalparc, '$datavcto', $valorparc, '$status', $idvenda)";
+				$resultado = mysqli_query($GLOBALS['connection'], $sql);
 				
 			}
 			
@@ -172,7 +172,7 @@
 			unset($_SESSION['parcelas'], $_SESSION['valorfinal'], $_SESSION['idvenda'], $_SESSION['prazo']);
 			
 			$sql = "update venda set totalvenda = $valorfinal, prazo = $prazo where idvenda = $idvenda";
-			mysql_query($sql);
+			mysqli_query($GLOBALS['connection'], $sql);
 			?>
             <script type="text/javascript">envia();</script>
             <?php
